@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../CRUDAPP/style.css">
     <script src="https://kit.fontawesome.com/122542a012.js" crossorigin="anonymous"></script>
-    <title>Document</title>
+    <title>Incidentes</title>
 </head>
 
 <body>
@@ -17,53 +17,55 @@
     <div class="input-table">
 
         <section class="input-form">
-            <form action="">
+            <form method="post">
                 <h2>Consluta</h2>
                 <div class="form-element">
                     <label for="date">Fecha:</label>
-                    <input type="date" id="date">
+                    <input type="date" name="date" id="date" required>
                 </div>
                 <div class="form-element">
                     <label for="desc">Descripción</label>
-                    <input type="text" id="desc" placeholder="Ingresar la descripción.">
+                    <input type="text" id="desc" name="desc" placeholder="Ingresar la descripción." required>
                 </div>
                 <div class="form-element">
                     <label for="nombre">Nombre</label>
-                    <input type="text" id="nombre" placeholder="Ingrese el nombre.">
+                    <input type="text" id="nombre" name="name" placeholder="Ingrese el nombre." required>
                 </div>
                 <div class="form-element">
                     <label for="acciones">Acciones</label>
-                    <input type="text" id="acciones" placeholder="Ingrese acciones.">
+                    <input type="text" id="acciones" name="act"placeholder="Ingrese acciones." required>
                 </div>
                 <div class="form-element">
-                    <label for="password">Estados</label>
+                    <label for="state">Estados</label>
                     <div class="estados-btn">
-                        <input type="radio" id="abierto" name="estado" value="abierto" checked>
+                        <input type="radio" id="abierto" name="state" value="abierto" checked required>
                         <label for="abierto">Abierto</label>
 
-                        <input type="radio" id="cerrado" name="estado" value="cerrado">
+                        <input type="radio" id="cerrado" name="state" value="cerrado" required>
                         <label for="cerrado">Cerrado</label>
                     </div>
 
                 </div>
 
-                <button type="submit">Enviar</button>
+                <button type="submit" name="submit">Enviar</button>
+                <?php include "../CRUDAPP/Db/insert.php"; ?>
             </form>
-
         </section>
 
         <div class="input-section">
             <div class="filtrar">
                 <h3>Filtrar: </h3>
-                <div class="estados-btn">
+                <div class="estados-fil-btn">
                     <input type="radio" id="todo" name="filter" value="todo" checked>
-                    <label for="todo">Todo</label>
+                    <label for="todofil">Todo</label>
 
                     <input type="radio" id="abiertofil" name="filter" value="abierto">
                     <label for="abiertofil">Abierto</label>
 
                     <input type="radio" id="cerradofil" name="filter" value="cerrado">
                     <label for="cerradofil">Cerrado</label>
+
+                    <button class="filtrar-btn" name = "filtrar-submit">Flitrar</button>
                 </div>
             </div>
 
@@ -74,6 +76,7 @@
                     <th>Nombre</th>
                     <th>Acciones</th>
                     <th>Estado</th>
+                    <th>Modificaciones</th>
                 </tr>
                 <?php
                 include "../CRUDAPP/Db/select.php";
@@ -81,13 +84,15 @@
                 while ($mostrar = mysqli_fetch_array($resultado_consulta)) {
                 ?>
                     <tr class="table-row">
-                        <td><?php echo $mostrar['id'] ?></td>
-                        <td><?php echo $mostrar['username'] ?></td>
-                        <td><?php echo $mostrar['email'] ?></td>
-                        <td><?php echo $mostrar['password'] ?></td>
+                        <td><?php echo $mostrar['fecha'] ?></td>
+                        <td><?php echo $mostrar['descripcion'] ?></td>
+                        <td><?php echo $mostrar['nombre'] ?></td>
+                        <td><?php echo $mostrar['acciones'] ?></td>
+                        <td><?php echo $mostrar['estado'] ?></td>
+                        <td><?php echo $mostrar['modifica'] ?></td>
                         <td class="command">
-                            <a href="../CRUDAPP/?php echo $mostrar['id']?>" id="basura" class="table-info basura-actualizar">Borrar</a>
-                            <a href="../MR/Db/actualizar.php?id=<?php echo $mostrar['id'] ?>" id="actualizar" class="table-info basura-actualizar">Modificar</a>
+                            <a href="../CRUDAPP/Db/modificar.php?id=<?php echo $mostrar['id']?>" id="btn-modificar">Modificar</a>
+                            <a href="../CRUDAPP/Db/eliminar.php?id=<?php echo $mostrar['id']?>" id="btn-borrar">Borrar</a>
                         </td>
                     </tr>
                 <?php

@@ -158,16 +158,6 @@ form button:hover {
   color: #00b894;
 }
 
-#btn-borrar:hover{
-  border-bottom: solid 2px #ff7675;
-  transition: 800ms ease-in-out;
-}
-
-#btn-modificar:hover {
-  border-bottom: solid 2px #00b894;
-  transition: 800ms ease-in-out;
-}
-
 .command {
   display: flex;
   flex-direction: row;
@@ -180,9 +170,4 @@ form button:hover {
   background-color: transparent;
   padding: 5px, 20px;
   font-size: 1rem;
-}
-
-.filtrar-btn:hover {
-  border-bottom: solid 2px #fdcb6e;
-  transition: 800ms ease-in-out;
 }
