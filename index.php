@@ -65,7 +65,7 @@
                     <input type="radio" id="cerradofil" name="filter" value="cerrado">
                     <label for="cerradofil">Cerrado</label>
 
-                    <button class="filtrar-btn" name = "filtrar-submit">Flitrar</button>
+                    <button type="submit" class="filtrar-btn" name = "filtrar-submit">Flitrar</button>
                 </div>
             </div>
 
@@ -79,7 +79,7 @@
                     <th>Modificaciones</th>
                 </tr>
                 <?php
-                include "../CRUDAPP/Db/select.php";
+                include "../CRUDAPP/Db/filter.php";
 
                 while ($mostrar = mysqli_fetch_array($resultado_consulta)) {
                 ?>
